@@ -40,7 +40,7 @@ function BrushSize() {
     <Slider.Root
       className="w-full h-full flex flex-col items-center justify-center"
       orientation="vertical"
-      max={40}
+      max={100}
       min={5}
       value={[strokeWidth]}
       onValueChange={(value) => {
@@ -57,9 +57,9 @@ function BrushSize() {
 
 function ColorPicker() {
   const { strokeColor, dispatch } = useCanvasContext();
-  const colors = ["red", "blue", "yellow", "black", "white", "green"];
+  const colors = ["#dfdfdf", "#fef200", "#ff0078", "#0201ff", "black", "white"];
   return (
-    <div className="h-full transform -translate-x-2 flex flex-col items-center space-y-2">
+    <div className="h-full flex flex-col items-center space-y-2 justify-end">
       {colors.map((color) => {
         return (
           <div
@@ -94,44 +94,33 @@ function ToolButton({ children, active, onClick }) {
   );
 }
 function Tools({ activeToolMenu, setActiveToolMenu }) {
+  const { strokeWidth, strokeColor } = useCanvasContext();
   const brushActive = activeToolMenu === "brush";
   return (
-    <div className={classNames("text-3xl flex h-[500px] relative ml-4")}>
-      <div
-        className={classNames(
-          "absolute h-full transform transition  ease-in-out duration-300 ",
-          activeToolMenu ? "translate-x-0 delay-75" : "-translate-x-56"
-        )}
-      >
-        {activeToolMenu === "brush" && <BrushSize />}
-        {activeToolMenu === "color" && <ColorPicker />}
-      </div>
-      <div
-        className={classNames(
-          "flex flex-col transform transition  ease-linear",
-          activeToolMenu ? "translate-x-8" : "translate-x-0 delay-75"
-        )}
-      >
-        <ToolButton
-          onClick={() =>
-            setActiveToolMenu(activeToolMenu !== "color" ? "color" : null)
-          }
-          active={activeToolMenu === "color"}
-        >
-          Color
-        </ToolButton>
-        <ToolButton
-          onClick={() =>
-            setActiveToolMenu(activeToolMenu !== "brush" ? "brush" : null)
-          }
-          active={activeToolMenu === "brush"}
-        >
-          Brush Size
-        </ToolButton>
+    <div
+      className={classNames("text-3xl space-x-4 flex h-[500px] relative ml-4")}
+    >
+      <BrushSize />
+      <div className="flex flex-col justify-end">
+        <div className="flex flex-row">
+          <ColorPicker />
 
-        <div>Undo</div>
-        <div>Clear</div>
-        <div>Save</div>
+          <div className={classNames("flex flex-col ml-4 space-y-1")}>
+            <div>Undo</div>
+            <div>Clear</div>
+            <div>Save</div>
+            <div className="flex border border-black mt-4 w-28 h-28  items-center justify-center">
+              <div
+                style={{
+                  width: strokeWidth,
+                  height: strokeWidth,
+                  backgroundColor: strokeColor,
+                }}
+                className="rounded-full border-black dark:border-white border-2"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
