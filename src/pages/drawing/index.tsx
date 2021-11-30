@@ -1,10 +1,15 @@
 import type { NextPage } from "next";
 import React from "react";
-import { useGallery, Drawing } from "../lib/gallery";
-import { Paths } from "../lib/svg-canvas";
+import { useGallery, Drawing } from "../../lib/gallery";
+import { Paths } from "../../lib/svg-canvas";
 import Link from "next/link";
-const Gallery: NextPage = () => {
+import { useRouter } from "next/router";
+const Drawing: NextPage = () => {
+  const router = useRouter();
+  const indexOfDrawing = router.query.index;
+  console.log("index", indexOfDrawing);
   const { drawings } = useGallery();
+  const drawing = drawings[indexOfDrawing];
   return (
     <div className="h-full min-h-screen flex flex-col items-center  font-display text-8xl font-bold uppercase py-20 max-w-screen-md mx-auto">
       <h1 className="mb-2">
@@ -12,30 +17,8 @@ const Gallery: NextPage = () => {
         <br />
         Drawing App
       </h1>
-      <h2 className="text-sm">(Gallery)</h2>
-      <div className="max-w-screen-lg mx-auto w-full">
-        <GalleryGrid drawings={drawings} />
-      </div>
-    </div>
-  );
-};
-
-function GalleryGrid({ drawings }: { drawings: Drawing[] }) {
-  return (
-    <div className="gallery-grid">
-      {drawings.map((drawing, i) => {
-        return <GalleryItem index={i} drawing={drawing} />;
-      })}
-    </div>
-  );
-}
-
-function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
-  const { removeDrawing } = useGallery();
-
-  return (
-    <Link href={`/drawing?index=${index}`}>
-      <a className="gallery-item shadow-md">
+      <h2 className="text-sm">(Artwork)</h2>
+      <div className="flex flex-col w-full my-4 space-y-4">
         <div className="h-full w-full border bg-white border-black p-[3%]">
           <div className="w-full h-full bg-black text-white p-[2%]">
             <div className="w-full h-full  bg-white text-black flex items-center justify-center text-2xl">
@@ -55,9 +38,14 @@ function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
             </div>
           </div>
         </div>
-      </a>
-    </Link>
+        <div className="flex flex-col items-center w-full text-2xl font-semibold space-y-2">
+          <div>Download As Image</div>
+          <div>or</div>
+          <div>Delete forever</div>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
-export default Gallery;
+export default Drawing;

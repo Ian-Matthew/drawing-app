@@ -17,6 +17,8 @@ export function useGallery() {
     "drawings"
   );
 
+  console.log("length", gallery.drawings.length);
+
   function saveDrawing(drawing: Drawing) {
     let safePaths = drawing.paths.map((path) => {
       return {
