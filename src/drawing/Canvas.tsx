@@ -9,9 +9,9 @@ export function Canvas() {
   return (
     <div
       style={{ zIndex: 1 }}
-      className="max-w-[500px] max-h-[500px] h-full w-full border bg-white border-black my-4 p-3"
+      className="max-w-[500px] max-h-[500px] h-full w-full border bg-white border-black p-[3%]"
     >
-      <div className="w-full h-full bg-black text-white p-4">
+      <div className="w-full h-full bg-black text-white p-[2%]">
         <div className="w-full h-full bg-white text-black flex items-center justify-center text-2xl">
           <div
             className="flex flex-col w-full h-full max-w-screen-sm max-h-full mx-auto overflow-hidden sm:h-auto"

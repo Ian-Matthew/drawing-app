@@ -2,10 +2,11 @@ import classNames from "classnames";
 import React from "react";
 import * as Slider from "@radix-ui/react-slider";
 import { useCanvasContext } from "../lib/svg-canvas";
-
+import { useGallery } from "../lib/gallery";
 // ToolBar composed of all the tools + actions
 export function ToolBar() {
-  const { strokeWidth, strokeColor, dispatch } = useCanvasContext();
+  const { strokeWidth, strokeColor, dispatch, paths } = useCanvasContext();
+  const gallery = useGallery();
   return (
     // Container
     <div
@@ -16,7 +17,7 @@ export function ToolBar() {
 
       {/* Colors, Buttons, and Current Brush indicator */}
       <div className="flex flex-col justify-end">
-        <div className="flex flex-row">
+        <div className="flex flex-row text-left">
           {/* Color Picker */}
           <ColorPicker />
 
@@ -31,7 +32,13 @@ export function ToolBar() {
               Clear
             </ActionButton>
             {/* Save */}
-            <ActionButton onClick={() => {}}>Save</ActionButton>
+            <ActionButton
+              onClick={() => {
+                gallery.saveDrawing({ paths, date: new Date() });
+              }}
+            >
+              Save To Gallery
+            </ActionButton>
             {/* Current Tool */}
             <CurrentTool />
           </div>
@@ -127,7 +134,7 @@ function ActionButton({
     <button
       onClick={onClick}
       className={classNames(
-        "flex items-center space-x-5 font-bold uppercase  ease-out"
+        "flex text-2xl items-center space-x-5 font-bold uppercase text-left  ease-out"
       )}
     >
       {children}
