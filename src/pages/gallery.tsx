@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import React from "react";
-import { useGallery, Drawing } from "../lib/gallery";
+import { useGallery } from "../lib/gallery";
+import { Drawing } from "../lib/gallery/types";
 import { Paths } from "../lib/svg-canvas";
 import Link from "next/link";
 const Gallery: NextPage = () => {
@@ -24,15 +25,13 @@ function GalleryGrid({ drawings }: { drawings: Drawing[] }) {
   return (
     <div className="gallery-grid">
       {drawings.map((drawing, i) => {
-        return <GalleryItem index={i} drawing={drawing} />;
+        return <GalleryItem key={`drawing-${i}`} index={i} drawing={drawing} />;
       })}
     </div>
   );
 }
 
 function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
-  const { removeDrawing } = useGallery();
-
   return (
     <Link href={`/drawing?index=${index}`}>
       <a className="gallery-item shadow-md">

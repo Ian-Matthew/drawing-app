@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 import { CanvasPaths } from "../lib/svg-canvas";
 export interface Colors {

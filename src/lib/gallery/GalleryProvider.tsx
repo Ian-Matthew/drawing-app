@@ -1,7 +1,10 @@
 import React from "react";
 import { useGallery } from "./useGallary";
+import { GalleryContext } from "./types";
 
-const GalleryContext = React.createContext();
+const GalleryContext = React.createContext<GalleryContext | undefined>(
+  undefined
+);
 
 type GalleryProviderProps = { children: React.ReactNode };
 

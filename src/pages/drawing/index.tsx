@@ -1,13 +1,12 @@
 import type { NextPage } from "next";
 import React from "react";
-import { useGallery, Drawing } from "../../lib/gallery";
+import { useGallery } from "../../lib/gallery";
 import { Paths } from "../../lib/svg-canvas";
 import Link from "next/link";
 import { useRouter } from "next/router";
 const Drawing: NextPage = () => {
   const router = useRouter();
-  const indexOfDrawing = router.query.index;
-  console.log("index", indexOfDrawing);
+  const indexOfDrawing = router?.query?.index as unknown as number;
   const { drawings } = useGallery();
   const drawing = drawings[indexOfDrawing];
   return (

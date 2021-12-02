@@ -5,7 +5,7 @@ import { useCanvasContext } from "../lib/svg-canvas";
 import { useGallery } from "../lib/gallery";
 // ToolBar composed of all the tools + actions
 export function ToolBar() {
-  const { strokeWidth, strokeColor, dispatch, paths } = useCanvasContext();
+  const { dispatch, paths } = useCanvasContext();
   const gallery = useGallery();
   return (
     // Container
@@ -104,6 +104,7 @@ function ColorPicker() {
       {colors.map((color) => {
         return (
           <div
+            key={`color-${color}`}
             onClick={() => {
               dispatch({
                 type: "SET_STROKE_COLOR",
@@ -127,7 +128,7 @@ function ActionButton({
   children,
   onClick,
 }: {
-  children: React.Node;
+  children: React.ReactNode;
   onClick: () => void;
 }) {
   return (

@@ -1,14 +1,7 @@
 import { useRouter } from "next/dist/client/router";
-import React from "react";
-import { CanvasPaths } from "../svg-canvas";
 import { useLocalStorageState } from "../useLocalStorageState";
-export type Drawing = {
-  paths: CanvasPaths;
-  date: Date;
-  name?: string;
-  artist?: string;
-};
-export function useGallery() {
+import { Drawing, Gallery, GalleryContext } from "./types";
+export function useGallery(): GalleryContext {
   const router = useRouter();
   const [gallery, setGallery] = useLocalStorageState(
     {
@@ -16,8 +9,6 @@ export function useGallery() {
     },
     "drawings"
   );
-
-  console.log("length", gallery.drawings.length);
 
   function saveDrawing(drawing: Drawing) {
     let safePaths = drawing.paths.map((path) => {
@@ -33,7 +24,7 @@ export function useGallery() {
       };
     });
 
-    setGallery((g) => ({
+    setGallery((g: Gallery) => ({
       ...g,
       drawings: [...g.drawings, { ...drawing, paths: safePaths }],
     }));
@@ -41,7 +32,7 @@ export function useGallery() {
   }
 
   function removeDrawing(index: number) {
-    setGallery((g) => ({
+    setGallery((g: Gallery) => ({
       ...g,
       drawings: g.drawings.filter((_, i) => i !== index),
     }));

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Point, CanvasPath, ControlPoints } from "./types";
 
 function controlPoint(controlPoints: ControlPoints): [number, number] {

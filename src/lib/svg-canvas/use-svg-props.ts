@@ -1,13 +1,11 @@
 import React from "react";
 import { useCanvasContext } from "./Context";
 import { CanvasPath, Point, WriteSVGPoint } from "./types";
-export function useSvgProps(props: { ref: React.Ref<SVGSVGElement> }) {
+export function useSvgProps() {
   const { strokeColor, strokeWidth, paths, isDrawing, dispatch } =
     useCanvasContext();
-  let internalRef = React.useRef<SVGSVGElement | null>(null);
-  let externalRef = props?.ref;
   // Refs for the canvas and the dynamically create SVG point
-  const canvasRef = externalRef || internalRef;
+  const canvasRef = React.useRef<SVGSVGElement | null>(null);
   const pointRef = React.useRef<WriteSVGPoint | null>(null);
   // Is the user pinching to zoom?
   const [isZooming, setIsZooming] = React.useState(false);
