@@ -35,24 +35,26 @@ function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
   return (
     <Link href={`/drawing?index=${index}`}>
       <a className="gallery-item shadow-md">
-        <div className="h-full w-full border bg-white border-black p-[3%]">
-          <div className="w-full h-full bg-black text-white p-[2%]">
-            <div className="w-full h-full  bg-white text-black flex items-center justify-center text-2xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 500 500"
-                className="w-full h-full"
-              >
-                {drawing?.paths.length && (
-                  <g id="artPaths">
-                    <Paths paths={drawing.paths} />
-                  </g>
-                )}
-              </svg>
-            </div>
-          </div>
+        <div className="h-full w-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 500 500"
+            className="w-full h-full"
+          >
+            {drawing?.paths.length && (
+              <g id="artPaths">
+                <Paths paths={drawing.paths} />
+              </g>
+            )}
+            <rect
+              width={500}
+              height={500}
+              stroke={"black"}
+              strokeWidth={40}
+            ></rect>
+          </svg>
         </div>
       </a>
     </Link>

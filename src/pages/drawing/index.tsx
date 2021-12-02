@@ -18,30 +18,32 @@ const Drawing: NextPage = () => {
       </h1>
       <h2 className="text-sm">(Artwork)</h2>
       <div className="flex flex-col w-full my-4 space-y-4">
-        <div className="h-full w-full border bg-white border-black p-[3%]">
-          <div className="w-full h-full bg-black text-white p-[2%]">
-            <div className="w-full h-full  bg-white text-black flex items-center justify-center text-2xl">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 500 500"
-                className="w-full h-full"
-              >
-                {drawing?.paths.length && (
-                  <g id="artPaths">
-                    <Paths paths={drawing.paths} />
-                  </g>
-                )}
-              </svg>
-            </div>
-          </div>
+        <div className="h-full w-full">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 500 500"
+            className="w-full h-full"
+          >
+            {drawing?.paths.length && (
+              <g id="artPaths">
+                <Paths paths={drawing.paths} />
+              </g>
+            )}
+            <rect
+              width={500}
+              height={500}
+              stroke={"black"}
+              strokeWidth={40}
+            ></rect>
+          </svg>
         </div>
-        <div className="flex flex-col items-center w-full text-2xl font-semibold space-y-2">
-          <div>Download As Image</div>
-          <div>or</div>
-          <div>Delete forever</div>
-        </div>
+      </div>
+      <div className="flex flex-col items-center w-full text-2xl font-semibold space-y-2">
+        <div>Download As Image</div>
+        <div>or</div>
+        <div>Delete forever</div>
       </div>
     </div>
   );
