@@ -74,8 +74,8 @@ const Cursor = ({
         style={{
           backgroundColor: strokeColor,
           position: "absolute",
-          left: clientX,
-          top: clientY,
+          left: clientX as number,
+          top: clientY as number,
           height: strokeWidth,
           width: strokeWidth,
           transform: "translate(-50%, -50%)",
