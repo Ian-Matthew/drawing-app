@@ -6,6 +6,10 @@ The initial goal of this project was to satisfy user stories as requested in a c
 
 I'm hopeful I can extrapolate on what was started here, as its becoming a project I'm pretty interested in seeing through -- that is a social platform to share and curate simple doodles with intentionally slimmed down artist tools in an unassuming package.
 
+## Live Demo
+
+A live demo of the project can be found [here](https://the-drawing-app.vercel.app/). On your first visit you'll be prompted to draw your first image. After you save, you'll be taken to your gallery at `/gallery`. If you click a drawing you can download or delete it. Keep drawing and see your gallery grow!
+
 ## User Stories
 
 As mentioned, the initial concept for the app came from a coding challenge via the [devjam](https://devjam.vercel.app/project/Drawing-App-8) group. I was able to satisfy the the following user stories:
