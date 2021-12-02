@@ -3,6 +3,7 @@ import React from "react";
 import * as Slider from "@radix-ui/react-slider";
 import { useCanvasContext } from "../lib/svg-canvas";
 import { useGallery } from "../lib/gallery";
+import Link from "next/link";
 // ToolBar composed of all the tools + actions
 export function ToolBar() {
   const { dispatch, paths } = useCanvasContext();
@@ -25,6 +26,11 @@ export function ToolBar() {
 
           {/* Tool Buttons */}
           <div className="flex sm:flex-col flex-row sm:ml-4 space-x-2 sm:space-x-0 justify-center sm:justify-end">
+            {gallery.drawings.length > 0 && (
+              <ActionButton>
+                <Link href="/gallery">Gallery</Link>
+              </ActionButton>
+            )}
             {/* Undo */}
             <ActionButton onClick={() => dispatch({ type: "UNDO_LAST_PATH" })}>
               Undo
@@ -41,6 +47,7 @@ export function ToolBar() {
             >
               Save
             </ActionButton>
+
             {/* Current Tool */}
             <CurrentTool />
           </div>
@@ -151,7 +158,7 @@ function ActionButton({
   onClick,
 }: {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   return (
     <button

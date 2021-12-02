@@ -12,7 +12,9 @@ export function Canvas() {
       style={{ zIndex: 1 }}
       className="max-w-[500px] max-h-[500px] h-full w-full relative mx-auto"
     >
-      {mouse.isOver && <Cursor {...mouse} />}
+      {mouse.isOver && (
+        <Cursor clientX={mouse.clientX} clientY={mouse.clientY} />
+      )}
       <div
         className="flex flex-col w-full h-full max-w-screen-sm max-h-full mx-auto overflow-hidden sm:h-auto"
         role="presentation"
@@ -47,7 +49,13 @@ export function Canvas() {
   );
 }
 
-const Cursor = ({ clientX, clientY }) => {
+const Cursor = ({
+  clientX,
+  clientY,
+}: {
+  clientX: number | null;
+  clientY: number | null;
+}) => {
   const { strokeColor, strokeWidth } = useCanvasContext();
   return (
     <div

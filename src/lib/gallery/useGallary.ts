@@ -32,10 +32,14 @@ export function useGallery(): GalleryContext {
   }
 
   function removeDrawing(index: number) {
+    const newDrawings = gallery.drawings.filter(
+      (drawing: Drawing, i: number) => i !== index
+    );
     setGallery((g: Gallery) => ({
       ...g,
-      drawings: g.drawings.filter((_, i) => i !== index),
+      drawings: newDrawings,
     }));
+    router.push(newDrawings.length > 0 ? "/gallery" : "/");
   }
 
   return {

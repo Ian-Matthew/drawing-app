@@ -22,10 +22,22 @@ function GalleryGrid({ drawings }: { drawings: Drawing[] }) {
       {drawings.map((drawing, i) => {
         return <GalleryItem key={`drawing-${i}`} index={i} drawing={drawing} />;
       })}
+      <AddNewItem />
     </div>
   );
 }
 
+function AddNewItem() {
+  return (
+    <Link href={`/`}>
+      <a className="gallery-item shadow-md">
+        <div className="h-full w-full text-center p-2 border flex items-center justify-center border-black text-2xl">
+          New Drawing +
+        </div>
+      </a>
+    </Link>
+  );
+}
 function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
   return (
     <Link href={`/drawing?index=${index}`}>
