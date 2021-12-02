@@ -1,4 +1,4 @@
-![Drawing App Gallery](/images/gallery.png)
+![Drawing App Gallery](gallery.png)
 
 ## The Initial Goal
 
