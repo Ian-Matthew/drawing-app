@@ -5,6 +5,7 @@ import { Drawing } from "../lib/gallery/types";
 import { Paths } from "../lib/svg-canvas";
 import Link from "next/link";
 import { Layout } from "../Layout";
+import classNames from "classnames";
 const Gallery: NextPage = () => {
   const { drawings } = useGallery();
   return (
@@ -41,7 +42,12 @@ function AddNewItem() {
 function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
   return (
     <Link href={`/drawing?index=${index}`}>
-      <a className="gallery-item shadow-md">
+      <a
+        className={classNames(
+          "gallery-item shadow-md",
+          (index + 1) % 3 === 0 && "col-span-2 row-span-2"
+        )}
+      >
         <div className="h-full w-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
