@@ -2,21 +2,15 @@ import type { NextPage } from "next";
 import React from "react";
 import { useGallery } from "../../lib/gallery";
 import { Paths } from "../../lib/svg-canvas";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { Layout } from "../../Layout";
 const Drawing: NextPage = () => {
   const router = useRouter();
   const indexOfDrawing = router?.query?.index as unknown as number;
   const { drawings } = useGallery();
   const drawing = drawings[indexOfDrawing];
   return (
-    <div className="h-full min-h-screen flex flex-col items-center  font-display text-8xl font-bold uppercase py-20 max-w-screen-md mx-auto">
-      <h1 className="mb-2">
-        The
-        <br />
-        Drawing App
-      </h1>
-      <h2 className="text-sm">(Artwork)</h2>
+    <Layout title="(Artwork)">
       <div className="flex flex-col w-full my-4 space-y-4">
         <div className="h-full w-full">
           <svg
@@ -45,7 +39,7 @@ const Drawing: NextPage = () => {
         <div>or</div>
         <div>Delete forever</div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
