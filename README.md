@@ -1,3 +1,5 @@
+![Drawing App Gallery](/images/gallery.png)
+
 ## The Initial Goal
 
 The initial goal of this project was to satisfy user stories as requested in a code challenge. However, pretty soon into the process, my interest shifted heavily into tweaking the requirements and making something a little different.
