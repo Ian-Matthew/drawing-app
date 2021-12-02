@@ -45,7 +45,7 @@ function GalleryItem({ drawing, index }: { drawing: Drawing; index: number }) {
       <a
         className={classNames(
           "gallery-item shadow-md",
-          (index + 1) % 3 === 0 && "col-span-2 row-span-2"
+          (index === 1 || index === 5) && "col-span-2 row-span-2"
         )}
       >
         <div className="h-full w-full">
